@@ -1,48 +1,58 @@
 <!DOCTYPE html>
 <html lang="zh">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>小天使识字屋</title>
-  <link rel="stylesheet" href="style.css">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>小天使识字屋 Pro</title>
+<link rel="stylesheet" href="style.css">
 </head>
 <body>
-  <div class="container">
-    <h1>🌈 小天使识字屋</h1>
-    <p class="subtitle">快乐识字 · 边玩边学</p>
 
-    <div class="score-board">
-      ⭐ 分数：<span id="score">0</span>
-    </div>
+<div class="app">
+<h1>🌈 小天使识字屋 Pro</h1>
+<p class="subtitle">快乐识字 · 边玩边学</p>
 
-    <div class="card">
-      <button class="sound-btn" onclick="speakWord()">🔊 发音</button>
-      <h2 id="word">苹果</h2>
+<div class="score">⭐ 分数：<span id="score">0</span></div>
 
-      <div class="choices">
-        <button onclick="checkAnswer('苹果')">🍎 苹果</button>
-        <button onclick="checkAnswer('香蕉')">🍌 香蕉</button>
-        <button onclick="checkAnswer('汽车')">🚗 汽车</button>
-        <button onclick="checkAnswer('小猫')">🐱 小猫</button>
-      </div>
+<div class="card">
+<div class="emoji" id="emoji">🍞</div>
+<h2 id="word">面包</h2>
+<p id="pinyin">miàn bāo</p>
 
-      <p id="result"></p>
-    </div>
+<button onclick="speakWord()">🔊 示范读音</button>
 
-    <div class="leaderboard">
-      <h3>🏆 排行榜</h3>
-      <ol>
-        <li>小明 ⭐ 100</li>
-        <li>小美 ⭐ 90</li>
-        <li>小华 ⭐ 80</li>
-      </ol>
-    </div>
+<div class="stroke-box">
+<h3>✍️ 笔画学习</h3>
+<div class="stroke" id="stroke">面包</div>
+</div>
 
-    <audio autoplay loop>
-      <source src="https://cdn.pixabay.com/download/audio/2022/03/15/audio_c8e56f9d5d.mp3?filename=children-music-112191.mp3" type="audio/mpeg">
-    </audio>
-  </div>
+<div class="exercise">
+<h3>🎧 听音选答案</h3>
+<button onclick="playQuestion()">▶️ 播放题目</button>
 
-  <script src="script.js"></script>
+<div class="choices">
+<button onclick="checkAnswer('面包')">🍞 面包</button>
+<button onclick="checkAnswer('饭')">🍚 饭</button>
+<button onclick="checkAnswer('面')">🍜 面</button>
+<button onclick="checkAnswer('包')">👜 包</button>
+</div>
+</div>
+
+<p id="result"></p>
+
+<button class="next-btn" onclick="nextWord()">➡️ 下一题</button>
+</div>
+
+<div class="leaderboard">
+<h3>🏆 排行榜</h3>
+<ol>
+<li>小天使 ⭐ 120</li>
+<li>小明 ⭐ 100</li>
+<li>小美 ⭐ 90</li>
+</ol>
+</div>
+</div>
+
+<script src="script.js"></script>
 </body>
 </html>
