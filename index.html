@@ -1,62 +1,99 @@
 <!DOCTYPE html>
 <html lang="zh">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>小天使识字屋 Pro</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>小天使识字屋 Pro</title>
 
-  <link rel="stylesheet" href="style.css"/>
+<link rel="stylesheet" href="style.css">
 
-  <script src="https://cdn.jsdelivr.net/npm/hanzi-writer@3.5/dist/hanzi-writer.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/hanzi-writer@3.5/dist/hanzi-writer.min.js"></script>
 </head>
 
 <body>
 
+<div id="coverPage" class="cover-page">
+
+<h1>🌈 小天使识字屋 Pro</h1>
+
+<div class="cover-card">
+
+<input type="text" id="studentName" placeholder="👦 输入名字">
+
+<input type="text" id="studentClass" placeholder="🏫 输入班级">
+
+<input type="date" id="studentDate">
+
+<button onclick="startLearning()">🚀 开始学习</button>
+
+</div>
+
+<div class="history-box">
+<h3>📊 学习记录</h3>
+<div id="historyList"></div>
+</div>
+
+</div>
+
+<div id="learningPage" class="hidden">
+
 <div class="container">
 
-  <h1>🌈 小天使识字屋 Pro</h1>
+<h1>🌈 小天使识字屋 Pro</h1>
 
-  <div class="score-box">
-    ⭐ 分数：<span id="score">0</span>
-  </div>
+<div class="score-box">
+⭐ 分数：<span id="score">0</span>
+</div>
 
-  <div class="card">
+<div class="student-info">
+👦 <span id="displayName"></span>
+🏫 <span id="displayClass"></span>
+</div>
 
-    <div class="emoji" id="emoji">🍞</div>
+<div class="card">
 
-    <h2 id="word">面包</h2>
+<div class="emoji" id="emoji">🍞</div>
 
-    <p id="pinyin">miàn bāo</p>
+<h2 id="word">面包</h2>
 
-    <button onclick="speakWord()">🔊 示范读音</button>
+<p id="pinyin">miàn bāo</p>
 
-    <div class="stroke-section">
-      <h3>✍️ 笔顺学习</h3>
+<button onclick="speakWord()">🔊 示范读音</button>
 
-      <div id="writer"></div>
+<div class="stroke-section">
 
-      <button onclick="animateStroke()">▶️ 播放笔顺</button>
-    </div>
+<h3>✍️ 笔顺学习</h3>
 
-    <div class="quiz">
-      <h3>🎧 听音选答案</h3>
+<div id="writer"></div>
 
-      <button onclick="playQuestion()">🔊 播放题目</button>
+<button onclick="animateStroke()">▶️ 播放笔顺</button>
 
-      <div class="choices">
-        <button onclick="checkAnswer('面包')">🍞 面包</button>
-        <button onclick="checkAnswer('饭')">🍚 饭</button>
-        <button onclick="checkAnswer('面')">🍜 面</button>
-        <button onclick="checkAnswer('包')">👜 包</button>
-      </div>
+</div>
 
-      <p id="result"></p>
+<div class="quiz">
 
-    </div>
+<h3>🎧 听音选答案</h3>
 
-    <button class="next-btn" onclick="nextWord()">➡️ 下一题</button>
+<button onclick="playQuestion()">🔊 播放题目</button>
 
-  </div>
+<div class="choices">
+
+<button onclick="checkAnswer('面包')">🍞 面包</button>
+<button onclick="checkAnswer('饭')">🍚 饭</button>
+<button onclick="checkAnswer('面')">🍜 面</button>
+<button onclick="checkAnswer('包')">👜 包</button>
+
+</div>
+
+<p id="result"></p>
+
+</div>
+
+<button class="next-btn" onclick="nextWord()">➡️ 下一题</button>
+
+</div>
+
+</div>
 
 </div>
 

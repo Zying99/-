@@ -1,132 +1,170 @@
 const words = [
-
-{
-  word:'面包',
-  pinyin:'miàn bāo',
-  emoji:'🍞',
-  stroke:'面'
-},
-
-{
-  word:'饭',
-  pinyin:'fàn',
-  emoji:'🍚',
-  stroke:'饭'
-},
-
-{
-  word:'面',
-  pinyin:'miàn',
-  emoji:'🍜',
-  stroke:'面'
-},
-
-{
-  word:'包',
-  pinyin:'bāo',
-  emoji:'👜',
-  stroke:'包'
-}
-
+{word:'面包',pinyin:'miàn bāo',emoji:'🍞',strokes:['面','包']},
+{word:'饭',pinyin:'fàn',emoji:'🍚',strokes:['饭']},
+{word:'面',pinyin:'miàn',emoji:'🍜',strokes:['面']},
+{word:'包',pinyin:'bāo',emoji:'👜',strokes:['包']}
 ];
 
 let current = 0;
 let score = 0;
 let writer;
+let strokeIndex = 0;
+
+function startLearning(){
+
+const name = document.getElementById('studentName').value;
+const studentClass = document.getElementById('studentClass').value;
+const date = document.getElementById('studentDate').value;
+
+if(name===''){
+alert('请输入名字');
+return;
+}
+
+document.getElementById('coverPage').classList.add('hidden');
+document.getElementById('learningPage').classList.remove('hidden');
+
+document.getElementById('displayName').innerText = name;
+document.getElementById('displayClass').innerText = studentClass;
+
+saveRecord(name,date);
+
+loadWord();
+
+}
+
+function saveRecord(name,date){
+
+let records = JSON.parse(localStorage.getItem('records')) || [];
+
+records.push({
+name:name,
+date:date,
+score:0
+});
+
+localStorage.setItem('records',JSON.stringify(records));
+
+showRecords();
+
+}
+
+function showRecords(){
+
+let records = JSON.parse(localStorage.getItem('records')) || [];
+
+const history = document.getElementById('historyList');
+
+history.innerHTML='';
+
+records.forEach(r=>{
+
+history.innerHTML += `
+<div class="record">
+👦 ${r.name} | 📅 ${r.date} | ⭐ ${r.score}
+</div>
+`;
+
+});
+
+}
 
 function loadWord(){
 
-  document.getElementById('word').innerText = words[current].word;
+document.getElementById('word').innerText = words[current].word;
+document.getElementById('pinyin').innerText = words[current].pinyin;
+document.getElementById('emoji').innerText = words[current].emoji;
 
-  document.getElementById('pinyin').innerText = words[current].pinyin;
+strokeIndex = 0;
 
-  document.getElementById('emoji').innerText = words[current].emoji;
+createWriter();
 
-  createWriter();
-
-  document.getElementById('result').innerText='';
+document.getElementById('result').innerText='';
 
 }
 
 function createWriter(){
 
-  document.getElementById('writer').innerHTML='';
+document.getElementById('writer').innerHTML='';
 
-  writer = HanziWriter.create('writer', words[current].stroke, {
-
-    width:250,
-    height:250,
-    padding:5,
-    strokeAnimationSpeed:1,
-    delayBetweenStrokes:300,
-
-    showOutline:true,
-    strokeColor:'#4c94d6'
-
-  });
+writer = HanziWriter.create('writer', words[current].strokes[strokeIndex], {
+width:250,
+height:250,
+padding:5,
+strokeAnimationSpeed:1,
+delayBetweenStrokes:300,
+showOutline:true,
+strokeColor:'#4c94d6'
+});
 
 }
 
 function animateStroke(){
 
-  writer.animateCharacter();
+writer.animateCharacter({
+onComplete:()=>{
+
+strokeIndex++;
+
+if(strokeIndex < words[current].strokes.length){
+
+createWriter();
+
+setTimeout(()=>{
+animateStroke();
+},500);
+
+}
+
+}
+});
 
 }
 
 function speakWord(){
 
-  const utterance = new SpeechSynthesisUtterance(words[current].word);
-
-  utterance.lang='zh-CN';
-
-  speechSynthesis.speak(utterance);
+const utterance = new SpeechSynthesisUtterance(words[current].word);
+utterance.lang='zh-CN';
+speechSynthesis.speak(utterance);
 
 }
 
 function playQuestion(){
-
-  speakWord();
-
+speakWord();
 }
 
 function checkAnswer(answer){
 
-  const result=document.getElementById('result');
+const result=document.getElementById('result');
 
-  if(answer===words[current].word){
+if(answer===words[current].word){
 
-    score+=10;
+score+=10;
 
-    document.getElementById('score').innerText=score;
+document.getElementById('score').innerText=score;
 
-    result.innerText='🎉 好棒哦！';
+result.innerText='🎉 好棒哦！';
+result.style.color='green';
 
-    result.style.color='green';
+}else{
 
-  }
+result.innerText='😅 再试试看！';
+result.style.color='red';
 
-  else{
-
-    result.innerText='😅 再试试看！';
-
-    result.style.color='red';
-
-  }
+}
 
 }
 
 function nextWord(){
 
-  current++;
+current++;
 
-  if(current>=words.length){
-
-    current=0;
-
-  }
-
-  loadWord();
-
+if(current>=words.length){
+current=0;
 }
 
 loadWord();
+
+}
+
+showRecords();
