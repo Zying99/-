@@ -3,7 +3,7 @@ const words = [
 {word:'面包',pinyin:'miàn bāo',emoji:'🍞',strokes:['面','包']},
 {word:'饭',pinyin:'fàn',emoji:'🍚',strokes:['饭']},
 {word:'面',pinyin:'miàn',emoji:'🍜',strokes:['面']},
-{word:'包',pinyin:'bāo',emoji:'🥟 ',strokes:['包']}
+{word:'包',pinyin:'bāo',emoji:'🥟',strokes:['包']}
 ];
 
 let current = 0;
