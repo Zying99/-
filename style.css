@@ -1,118 +1,101 @@
 body{
-margin:0;
-font-family:Arial,sans-serif;
-background:linear-gradient(to bottom,#dff1ff,#f7fbff);
+  margin:0;
+  font-family:Arial,sans-serif;
+  background:linear-gradient(to bottom,#dff2ff,#f7fbff);
 }
 
-.app{
-max-width:800px;
-margin:auto;
-padding:20px;
-text-align:center;
+.container{
+  max-width:800px;
+  margin:auto;
+  padding:20px;
+  text-align:center;
 }
 
 h1{
-color:#4c94d6;
+  color:#4c94d6;
 }
 
-.subtitle{
-color:#6eaee8;
-}
-
-.score{
-background:white;
-padding:10px;
-border-radius:15px;
-margin-bottom:20px;
-font-size:20px;
-box-shadow:0 4px 10px rgba(0,0,0,0.1);
+.score-box{
+  background:white;
+  padding:12px;
+  border-radius:15px;
+  margin-bottom:20px;
+  box-shadow:0 4px 10px rgba(0,0,0,0.1);
 }
 
 .card{
-background:white;
-border-radius:25px;
-padding:25px;
-box-shadow:0 5px 15px rgba(0,0,0,0.1);
+  background:white;
+  padding:25px;
+  border-radius:25px;
+  box-shadow:0 5px 15px rgba(0,0,0,0.1);
 }
 
 .emoji{
-font-size:80px;
+  font-size:80px;
 }
 
 #word{
-font-size:50px;
-color:#4c94d6;
+  font-size:55px;
+  color:#4c94d6;
 }
 
 #pinyin{
-font-size:22px;
-color:#666;
+  font-size:24px;
+  color:#666;
 }
 
 button{
-background:#9cd1ff;
-border:none;
-padding:12px 20px;
-border-radius:15px;
-margin:10px;
-cursor:pointer;
-font-size:18px;
-transition:0.2s;
+  background:#9fd2ff;
+  border:none;
+  padding:14px 20px;
+  border-radius:18px;
+  margin:10px;
+  cursor:pointer;
+  font-size:18px;
 }
 
 button:hover{
-transform:scale(1.05);
+  transform:scale(1.05);
 }
 
-.stroke-box{
-margin-top:20px;
-background:#eef7ff;
-padding:15px;
-border-radius:20px;
+.stroke-section{
+  margin-top:20px;
+  background:#eef7ff;
+  padding:20px;
+  border-radius:20px;
 }
 
-.stroke{
-font-size:55px;
-letter-spacing:10px;
-animation:pulse 1s infinite alternate;
-}
-
-@keyframes pulse{
-from{transform:scale(1);}
-to{transform:scale(1.08);}
+#writer{
+  width:250px;
+  height:250px;
+  margin:auto;
 }
 
 .choices{
-display:grid;
-grid-template-columns:1fr 1fr;
-gap:10px;
-margin-top:20px;
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:10px;
+  margin-top:20px;
 }
 
 #result{
-font-size:26px;
-font-weight:bold;
+  font-size:28px;
+  font-weight:bold;
 }
 
 .next-btn{
-background:#6fb8ff;
-color:white;
-}
-
-.leaderboard{
-background:white;
-margin-top:25px;
-padding:20px;
-border-radius:20px;
-box-shadow:0 5px 15px rgba(0,0,0,0.1);
+  background:#6ab6ff;
+  color:white;
 }
 
 @media(max-width:600px){
-.choices{
-grid-template-columns:1fr;
-}
 
-#word{
-font-size:40px;
-}
+  .choices{
+    grid-template-columns:1fr;
+  }
+
+  #word{
+    font-size:40px;
+  }
+
 }
