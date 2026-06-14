@@ -1,58 +1,70 @@
 <!DOCTYPE html>
+
 <html lang="zh">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>小天使识字屋 Pro</title>
-<link rel="stylesheet" href="style.css">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>小天使识字屋 Pro</title>
+
+  <link rel="stylesheet" href="style.css"/>
+
+  <script src="https://cdn.jsdelivr.net/npm/hanzi-writer@3.5/dist/hanzi-writer.min.js"></script>
+
 </head>
+
 <body>
 
-<div class="app">
-<h1>🌈 小天使识字屋 Pro</h1>
-<p class="subtitle">快乐识字 · 边玩边学</p>
+<div class="container">
 
-<div class="score">⭐ 分数：<span id="score">0</span></div>
+  <h1>🌈 小天使识字屋 Pro</h1>
 
-<div class="card">
+  <div class="score-box">
+    ⭐ 分数：<span id="score">0</span>
+  </div>
+
+  <div class="card">
+
+```
 <div class="emoji" id="emoji">🍞</div>
+
 <h2 id="word">面包</h2>
+
 <p id="pinyin">miàn bāo</p>
 
 <button onclick="speakWord()">🔊 示范读音</button>
 
-<div class="stroke-box">
-<h3>✍️ 笔画学习</h3>
-<div class="stroke" id="stroke">面包</div>
+<div class="stroke-section">
+  <h3>✍️ 笔顺学习</h3>
+
+  <div id="writer"></div>
+
+  <button onclick="animateStroke()">▶️ 播放笔顺</button>
 </div>
 
-<div class="exercise">
-<h3>🎧 听音选答案</h3>
-<button onclick="playQuestion()">▶️ 播放题目</button>
+<div class="quiz">
+  <h3>🎧 听音选答案</h3>
 
-<div class="choices">
-<button onclick="checkAnswer('面包')">🍞 面包</button>
-<button onclick="checkAnswer('饭')">🍚 饭</button>
-<button onclick="checkAnswer('面')">🍜 面</button>
-<button onclick="checkAnswer('包')">👜 包</button>
-</div>
-</div>
+  <button onclick="playQuestion()">🔊 播放题目</button>
 
-<p id="result"></p>
+  <div class="choices">
+    <button onclick="checkAnswer('面包')">🍞 面包</button>
+    <button onclick="checkAnswer('饭')">🍚 饭</button>
+    <button onclick="checkAnswer('面')">🍜 面</button>
+    <button onclick="checkAnswer('包')">👜 包</button>
+  </div>
+
+  <p id="result"></p>
+
+</div>
 
 <button class="next-btn" onclick="nextWord()">➡️ 下一题</button>
-</div>
+```
 
-<div class="leaderboard">
-<h3>🏆 排行榜</h3>
-<ol>
-<li>小天使 ⭐ 120</li>
-<li>小明 ⭐ 100</li>
-<li>小美 ⭐ 90</li>
-</ol>
-</div>
+  </div>
+
 </div>
 
 <script src="script.js"></script>
+
 </body>
 </html>
