@@ -1,3 +1,4 @@
+
 const words = [
 {word:'面包',pinyin:'miàn bāo',emoji:'🍞',strokes:['面','包']},
 {word:'饭',pinyin:'fàn',emoji:'🍚',strokes:['饭']},
@@ -13,8 +14,6 @@ let strokeIndex = 0;
 function startLearning(){
 
 const name = document.getElementById('studentName').value;
-const studentClass = document.getElementById('studentClass').value;
-const date = document.getElementById('studentDate').value;
 
 if(name===''){
 alert('请输入名字');
@@ -25,47 +24,8 @@ document.getElementById('coverPage').classList.add('hidden');
 document.getElementById('learningPage').classList.remove('hidden');
 
 document.getElementById('displayName').innerText = name;
-document.getElementById('displayClass').innerText = studentClass;
-
-saveRecord(name,date);
 
 loadWord();
-
-}
-
-function saveRecord(name,date){
-
-let records = JSON.parse(localStorage.getItem('records')) || [];
-
-records.push({
-name:name,
-date:date,
-score:0
-});
-
-localStorage.setItem('records',JSON.stringify(records));
-
-showRecords();
-
-}
-
-function showRecords(){
-
-let records = JSON.parse(localStorage.getItem('records')) || [];
-
-const history = document.getElementById('historyList');
-
-history.innerHTML='';
-
-records.forEach(r=>{
-
-history.innerHTML += `
-<div class="record">
-👦 ${r.name} | 📅 ${r.date} | ⭐ ${r.score}
-</div>
-`;
-
-});
 
 }
 
@@ -88,13 +48,15 @@ function createWriter(){
 document.getElementById('writer').innerHTML='';
 
 writer = HanziWriter.create('writer', words[current].strokes[strokeIndex], {
+
 width:250,
 height:250,
 padding:5,
 strokeAnimationSpeed:1,
 delayBetweenStrokes:300,
 showOutline:true,
-strokeColor:'#4c94d6'
+strokeColor:'#4d6da8'
+
 });
 
 }
@@ -102,6 +64,7 @@ strokeColor:'#4c94d6'
 function animateStroke(){
 
 writer.animateCharacter({
+
 onComplete:()=>{
 
 strokeIndex++;
@@ -117,6 +80,7 @@ animateStroke();
 }
 
 }
+
 });
 
 }
@@ -133,6 +97,46 @@ function playQuestion(){
 speakWord();
 }
 
+function saveStudentRecord(name,score){
+
+let records = JSON.parse(localStorage.getItem('records')) || [];
+
+const today = new Date().toLocaleDateString();
+
+records.push({
+name:name,
+score:score,
+date:today
+});
+
+localStorage.setItem('records',JSON.stringify(records));
+
+showStudentRecords();
+
+}
+
+function showStudentRecords(){
+
+const historyList = document.getElementById('historyList');
+
+if(!historyList) return;
+
+let records = JSON.parse(localStorage.getItem('records')) || [];
+
+historyList.innerHTML='';
+
+records.forEach(record=>{
+
+historyList.innerHTML += `
+<div class="record">
+👦 ${record.name} | 📅 ${record.date} | ⭐ ${record.score}
+</div>
+`;
+
+});
+
+}
+
 function checkAnswer(answer){
 
 const result=document.getElementById('result');
@@ -145,6 +149,10 @@ document.getElementById('score').innerText=score;
 
 result.innerText='🎉 好棒哦！';
 result.style.color='green';
+
+const studentName = document.getElementById('displayName').innerText;
+
+saveStudentRecord(studentName,score);
 
 }else{
 
@@ -167,4 +175,4 @@ loadWord();
 
 }
 
-showRecords();
+showStudentRecords();

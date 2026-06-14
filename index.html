@@ -1,9 +1,10 @@
+
 <!DOCTYPE html>
 <html lang="zh">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>小天使识字屋 Pro</title>
+<title>小状元识字</title>
 
 <link rel="stylesheet" href="style.css">
 
@@ -14,23 +15,32 @@
 
 <div id="coverPage" class="cover-page">
 
-<h1>🌈 小天使识字屋 Pro</h1>
+<div class="logo-box">
+<div class="logo">🎓</div>
+
+<h1>小状元识字</h1>
+
+<p>像状元一样快乐读书</p>
+</div>
 
 <div class="cover-card">
 
-<input type="text" id="studentName" placeholder="👦 输入名字">
+<label>学校名称</label>
+<input type="text" value="SJKC DENGKIL" readonly>
 
-<input type="text" id="studentClass" placeholder="🏫 输入班级">
+<label>输入你的名字</label>
+<input type="text" id="studentName" placeholder="大名鼎鼎的小状元...">
 
-<input type="date" id="studentDate">
-
-<button onclick="startLearning()">🚀 开始学习</button>
+<button onclick="startLearning()">🚀 开始识字</button>
 
 </div>
 
 <div class="history-box">
-<h3>📊 学习记录</h3>
+
+<h3>📊 学生记录</h3>
+
 <div id="historyList"></div>
+
 </div>
 
 </div>
@@ -47,7 +57,6 @@
 
 <div class="student-info">
 👦 <span id="displayName"></span>
-🏫 <span id="displayClass"></span>
 </div>
 
 <div class="card">
